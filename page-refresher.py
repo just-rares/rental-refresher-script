@@ -16,7 +16,6 @@ chrome_options.add_argument("--headless")
 
 def set_refresh_rate():
     day = datetime.now().day
-    return 5
     if day < 21:
         return 3600
     if day < 23:
