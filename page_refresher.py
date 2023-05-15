@@ -26,8 +26,8 @@ def set_refresh_rate():
 
 
 
-def sound_alert():
-    for _ in range(1, 5000):
+def sound_alert(x):
+    for _ in range(1, x):
         os.system('echo -e "\a"')
         time.sleep(0.1)
 
@@ -37,7 +37,7 @@ def check_number_change(previous_number, current_number):
         msg = f"Number has changed! Previous: {previous_number}, Current: {current_number}"
         log(msg)
         messagebox.showinfo("Room Found", "The number changed. There may be rooms available")
-        sound_alert()
+        sound_alert(5000)
 
 
 def log(msg):
@@ -110,4 +110,4 @@ if __name__ == "__main__":
         print(f"Program stopped at time {time.strftime('%H:%M:%S')}")
     except Exception as e:
         log(e)
-        print("Program interrupted by user. FILE: page-refresher.py")
+        print("Program interrupted by user. FILE: page_refresher.py")

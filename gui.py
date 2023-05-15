@@ -5,15 +5,10 @@ import re
 import subprocess
 import threading
 import sys
+import page_refresher
 
 should_stop = False  # Initialize it here
 run_script_process = subprocess
-
-def sound_alert(x):
-    for _ in range(1, x):
-        os.system('echo -e "\a"')
-        time.sleep(0.1)
-
 
 def get_refresh_count(array):
     return len(array)
@@ -58,12 +53,12 @@ def parse_log_file(file_path, refresh_count_label, room_count_label):
 
     except LogParsingException as e:
         print(e)
-        sound_alert(50)
+        page_refresher.sound_alert(50)
         os._exit(1)
 
 def run_script():
     global run_script_process
-    run_script_process = subprocess.Popen(["python3", "page-refresher.py"])  # use Popen instead of run
+    run_script_process = subprocess.Popen(["python3", "page_refresher.py"])  # use Popen instead of run
 
 
 def cleanup(log_thread):
@@ -85,7 +80,7 @@ def main():
 
     window = tk.Tk()
     window.title("Room Checker")
-    window.geometry("300x120")
+    window.geometry("300x140")
     window.protocol("WM_DELETE_WINDOW", lambda: cleanup(log_thread))
 
     frame = tk.Frame(window)
@@ -103,8 +98,15 @@ def main():
     room_count_value = tk.Label(frame, text="")
     room_count_value.grid(column=1, row=1)
 
+    refresh_rate_label = tk.Label(frame, text="Refresh Rate:")
+    refresh_rate_label.grid(column=0, row=2)
+
+    refresh_rate_value = tk.Label(frame, text=str(int(page_refresher.set_refresh_rate() / 60)) + "m")
+    refresh_rate_value.grid(column=1, row=2)
+
+
     button = tk.Button(frame, text="Open Link", command=open_link)
-    button.grid(columnspan=2, row=2)
+    button.grid(columnspan=2, row=3)
 
     # Start a separate thread for parsing log file and updating GUI
     log_thread = threading.Thread(target=parse_log_file, args=(file_path, refresh_count_value, room_count_value))
