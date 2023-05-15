@@ -9,6 +9,7 @@ import page_refresher
 
 should_stop = False  # Initialize it here
 run_script_process = subprocess
+running = True
 
 def get_refresh_count(array):
     return len(array)
@@ -56,17 +57,21 @@ def parse_log_file(file_path, refresh_count_label, room_count_label):
         page_refresher.sound_alert(50)
         os._exit(1)
 
+
 def run_script():
     global run_script_process
     run_script_process = subprocess.Popen(["python3", "page_refresher.py"])  # use Popen instead of run
 
 
-def cleanup(log_thread):
+def cleanup(log_thread, countdown_thread):
     global run_script_process, should_stop
     print("Program interrupted by user.")
+    page_refresher.log(f"gui - Program stopped at time {time.strftime('%H:%M:%S')}")
     should_stop = True
     log_thread.join()
+    countdown_thread.join()
     run_script_process.terminate()
+    os.system("kill python")
     sys.exit(0)
 
 
@@ -80,8 +85,7 @@ def main():
 
     window = tk.Tk()
     window.title("Room Checker")
-    window.geometry("300x140")
-    window.protocol("WM_DELETE_WINDOW", lambda: cleanup(log_thread))
+    window.geometry("300x160")
 
     frame = tk.Frame(window)
     frame.pack(pady=20)
@@ -103,23 +107,33 @@ def main():
 
     refresh_rate_value = tk.Label(frame, text=str(int(page_refresher.set_refresh_rate() / 60)) + "m")
     refresh_rate_value.grid(column=1, row=2)
+    global countdown_label
+    countdown_label = tk.Label(frame, text="")
+    countdown_label.grid(columnspan=2, row=3)
+    countdown_thread = threading.Thread(target=countdown,
+                                        args=(countdown_label,
+                                              page_refresher.set_refresh_rate()))
 
+    countdown_thread.start()
 
     button = tk.Button(frame, text="Open Link", command=open_link)
-    button.grid(columnspan=2, row=3)
+    button.grid(columnspan=2, row=4)
 
-    # Start a separate thread for parsing log file and updating GUI
     log_thread = threading.Thread(target=parse_log_file, args=(file_path, refresh_count_value, room_count_value))
     log_thread.start()
-
+    window.protocol("WM_DELETE_WINDOW", lambda: cleanup(log_thread, countdown_thread))
     try:
         window.mainloop()
     except KeyboardInterrupt:
-        cleanup(log_thread)
+        cleanup(log_thread, countdown_thread)
 
-
-
-
+def countdown(label, seconds):
+    global running
+    while seconds >= 0 and running:
+        minutes, sec = divmod(seconds, 60)
+        label.config(text=f"{minutes:02d}:{sec:02d}")
+        time.sleep(1)
+        seconds -= 1
 
 
 def open_link():

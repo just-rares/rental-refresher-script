@@ -1,0 +1,37 @@
+Program started at time 21:42:36
+#1 | curr_num: 1 | last_refresh: 21:42:38
+#2 | curr_num: 1 | last_refresh: 21:42:45
+gui - Program stopped at time 21:42:49
+Program stopped at time 21:42:53
+Program started at time 21:43:46
+#3 | curr_num: 1 | last_refresh: 21:43:48
+#4 | curr_num: 1 | last_refresh: 21:43:55
+gui - Program stopped at time 21:43:57
+#5 | curr_num: 1 | last_refresh: 21:44:03
+Program stopped at time 21:44:07
+gui - Program stopped at time 21:44:07
+Program started at time 21:44:26
+#6 | curr_num: 1 | last_refresh: 21:44:28
+#7 | curr_num: 1 | last_refresh: 21:44:35
+gui - Program stopped at time 21:44:37
+Program stopped at time 21:44:38
+Program started at time 21:46:07
+#8 | curr_num: 1 | last_refresh: 21:46:09
+gui - Program stopped at time 21:46:11
+#9 | curr_num: 1 | last_refresh: 21:46:16
+Program stopped at time 21:46:18
+Program started at time 21:47:05
+#10 | curr_num: 1 | last_refresh: 21:47:07
+gui - Program stopped at time 21:47:09
+#11 | curr_num: 1 | last_refresh: 21:47:14
+Program stopped at time 21:47:19
+gui - Program stopped at time 21:47:19
+Program started at time 21:49:20
+#12 | curr_num: 1 | last_refresh: 21:49:22
+gui - Program stopped at time 21:49:24
+Program stopped at time 21:49:28
+Program started at time 21:50:33
+#13 | curr_num: 1 | last_refresh: 21:50:35
+gui - Program stopped at time 21:50:36
+Program stopped at time 21:50:42
+gui - Program stopped at time 21:50:42

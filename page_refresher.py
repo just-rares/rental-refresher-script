@@ -7,6 +7,7 @@ from tkinter import messagebox
 import os
 from datetime import datetime
 
+
 WEBSITE_URL = "https://5huizenvastgoedbeheer.nl/#/student-housing/"
 TARGET_DIV_SELECTOR = "div.q-chip.text-positive > div.q-chip__content"
 
@@ -16,6 +17,7 @@ chrome_options.add_argument("--headless")
 
 def set_refresh_rate():
     day = datetime.now().day
+    return 5
     if day < 21:
         return 3600
     if day < 23:
@@ -75,6 +77,7 @@ def main():
 
         while True:
             driver.refresh()
+
             time.sleep(2)
 
             try:
