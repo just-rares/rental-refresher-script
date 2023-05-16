@@ -1,0 +1,10 @@
+Program started at time 11:30:21
+#1 | curr_num: 1 | last_refresh: 11:30:23
+Program started at time 11:31:01
+#2 | curr_num: 1 | last_refresh: 11:31:03
+Program started at time 11:31:58
+#3 | curr_num: 1 | last_refresh: 11:32:00
+Program started at time 11:32:45
+#4 | curr_num: 1 | last_refresh: 11:32:47
+Program started at time 11:33:38
+#5 | curr_num: 1 | last_refresh: 11:33:40
