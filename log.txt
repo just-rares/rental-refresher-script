@@ -10,3 +10,11 @@ Program started at time 11:33:38
 #5 | curr_num: 1 | last_refresh: 11:33:40
 Program started at time 11:38:04
 #6 | curr_num: 1 | last_refresh: 11:38:06
+#7 | curr_num: 1 | last_refresh: 12:38:09
+#8 | curr_num: 1 | last_refresh: 13:38:11
+#9 | curr_num: 1 | last_refresh: 14:38:14
+#10 | curr_num: 1 | last_refresh: 15:38:16
+#11 | curr_num: 1 | last_refresh: 16:38:18
+Program started at time 16:45:22
+#12 | curr_num: 1 | last_refresh: 16:45:24
+Program stopped at time 16:45:25
